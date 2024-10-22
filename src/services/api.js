@@ -3,7 +3,6 @@ import { BACKEND_URL } from "../config";
 const fetchApi = async (endpoint, method = 'GET', body = null, token = null) => {
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
     ...(token ? { 'Authorization': `Bearer ${token}` } : {})
   };
 
@@ -18,10 +17,28 @@ const fetchApi = async (endpoint, method = 'GET', body = null, token = null) => 
 
   try {
     const response = await fetch(`${BACKEND_URL}${endpoint}`, config);
+
     if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
+      let errorMessage = `Error: ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.message || errorMessage;
+      } catch (e) {
+        console.error('Error al intentar analizar el cuerpo de la respuesta:', e);
+      }
+      throw new Error(errorMessage);
     }
-    return await response.json();
+
+    if (response.status === 204 || response.status === 205) {
+      return null; 
+    }
+
+    const contentType = response.headers.get('Content-Type');
+    if (contentType && contentType.includes('application/json')) {
+      return await response.json();
+    } else {
+      return await response.text();
+    }
   } catch (error) {
     console.error('Error en la solicitud:', error);
     throw error;

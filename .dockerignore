@@ -1,0 +1,21 @@
+# Ignorar la carpeta node_modules
+node_modules
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar archivos de configuración locales
+.env
+
+# Ignorar archivos de configuración de herramientas locales
+.vscode/
+.idea/
+.DS_Store
+
+# Ignorar archivos de pruebas
+tests/
+coverage/
+
+# Ignorar directorios de desarrollo de React
+build/
+public/

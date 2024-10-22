@@ -114,9 +114,9 @@ const Home = () => {
             <Form 
               fields={productFields}
               initialValues={initialValues}
+              selectedProduct={selectedProduct}
               onSubmit={handleProductSubmit} 
               buttonText={isEditing ? 'Actualizar Producto' : 'Agregar Producto'} 
-              errors={errors}
             />
           </section>
         </div>

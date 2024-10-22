@@ -30,7 +30,7 @@ function App() {
       <nav>
         {!isAuthenticated ? (
           <>
-            <a href="/login">Login</a> | <a href="/register">Registro</a>
+            <a href="/">Login</a> | <a href="/register">Registro</a>
           </>
         ) : (
           <button onClick={handleLogout}>Cerrar sesión</button>
@@ -38,7 +38,7 @@ function App() {
       </nav>
 
         <Routes>
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/home"

@@ -1,1 +1,1 @@
-export const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL  || 'https://optimal-tech-back-1-0.onrender.com';

@@ -8,8 +8,6 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isEditing, setIsEditing] = useState(false); 
 
-  const [errors, setErrors] = useState({});
-
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -36,19 +34,14 @@ const Home = () => {
       }
       fetchProducts();
       resetForm();
-      setErrors({});
     } catch (error) {
       console.error('Error al crear o actualizar producto:', error);
-      if (error.response && error.response.status === 400) {
-        setErrors(error.response.data);
-      }
     }
   };
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setIsEditing(true);
-    setErrors({});
   };
 
   const handleDelete = async (productId) => {

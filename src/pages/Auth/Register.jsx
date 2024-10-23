@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (formData) => {
     try {
       const response = await post('/auth/register', formData);
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error al registrar usuario:', error);
     }
